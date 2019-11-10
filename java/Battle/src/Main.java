@@ -1,6 +1,8 @@
-public class Main {
+import java.util.function.Function;
 
+public class Main {
     public static void main(String[] args) {
-        System.out.println(Util.foo("ass") + "\tDaaaammmmnnn!");
+    	final Function<String, String> mi = (azz) -> {return "Your " + azz + " done been foo-ed!";};
+    	System.out.printf("%s\t%s", mi.apply("Not Today"), "Daaaammmmnnn!");
     }
 }
