@@ -42,6 +42,28 @@ namespace Battle
             // Exercise 2.6
             var tripleSquareFlipped = HigherAndThen<int, int, int>()(Square)(Triple);
             Console.WriteLine(tripleSquareFlipped(5)); // 75
+
+            // Exercise 2.7 & 8
+            Func<int, Func<int, int>> add = a => b => a + b;
+            var add2Partial = PartialBoth(2, add);
+            Console.WriteLine(add2Partial(3)); //5
+
+            // Exercise 2.9
+            var formatStrings = F<int, double, long, short>();
+            var formattedString = formatStrings(42)(52.7)(42L)(1);
+            Console.WriteLine(formattedString); // duh...
+
+            // Exercise 2.10
+            Func<Tuple<int, double>, string> tupleMul = t => $"{t.Item1 * t.Item2}";
+            Console.WriteLine(Curry(tupleMul)(6)(7)); // 42
+
+            // Exercise 2.11
+            Func<double, Func<double, double>> addTax = x => y => x + x / 100 * y;
+            Func<double, Func<double, double>> swaapp(Func<double, Func<double, double>> f) => y => x => f(x)(y);
+            Console.WriteLine(swaapp(addTax)(0.09)(42.00)); // 42.0378
+
+            // Exercise 2.12
+            Console.WriteLine(Factorial(5)); // 120
         }
     }
 }
