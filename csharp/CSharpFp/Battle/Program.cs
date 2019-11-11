@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using static Battle.Ex2;
+using static Battle.EmailValidation;
 
 namespace Battle
 {
@@ -9,8 +10,16 @@ namespace Battle
     {
         static void Main(string[] args)
         {
+            // Base test
+            const string fooBar = "foo@bar.baz";
+            new List<string> { fooBar, null, "cr@zee.com", "" }
+                .ForEach(email => Validate(email).Invoke());
+        }
+
+        static void IceBreaker()
+        {
             // Ice breaker
-            Func<string, Func<string, Func<string>>> place = state => azz => () 
+            Func<string, Func<string, Func<string>>> place = state => azz => ()
                 => $"{state}: Your {azz ?? "uh, oh!"} done been {azz?.ToLower() ?? "whoops"}-ed!";
             Func<string, Func<string>> good = place("Good");
             Func<string, Func<string>> badd = place("Badd");
@@ -19,7 +28,9 @@ namespace Battle
                 good("FOO")(), good("BAR")(), badd(null)()
             };
             list.ForEach(Console.WriteLine);
-
+        }
+        static void Chapter2()
+        {
             // Exercise 2.1, 2.2
             Console.WriteLine(Compose(Triple, Square)(5)); // 75
 
